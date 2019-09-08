@@ -1,5 +1,5 @@
 function [] = bifurcationdiagram() 
-  as = 0:0.05:4;
+  as = 0:0.05:5;
   my_fixedpoints = arrayfun(@fixedpoints, as, 'UniformOutput', false);
   for i=1:numel(my_fixedpoints)
     i
