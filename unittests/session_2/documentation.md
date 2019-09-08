@@ -55,7 +55,7 @@ and instead of an array, a cell array is returned, where the `i`th element is th
 ## Training exercise: The quadratic equation and arrayfun
 Let $f(x) = x^2 + 3x + c$. Write a function that takes $c$ as input and returns the real roots (*i.e.* the values where $f(x)=0, x \in \mathbb{R}$) of this equation. Use the quadratic formula. Subsequently, use `arrayfun` to evaluate this function for the range $[-5, 5]$ taking steps of $\frac{1}{4}$. Use MATLAB to find the value for which $f(x)$ has a single real root.
 
-# Main exercise: Bifurcation diagram
+# Main exercise: Bifurcation diagram and Lyapunov exponent
 The main exercise for today involves drawing a bifurcation diagram for the logistic map. We will lead you through this problem in a number of steps.
 ## 1. Obtaining a fixed point set
 The first function we will work on is called `fixedpoints`. This method will take a single parameter, called `a`, which is the parameter of the logistic map
@@ -65,7 +65,9 @@ Use the previously written function `orbit` for a fixed number of iterations, an
 We will now work in the function `bifurcationdigram.m`. Subsequently, you generate a range of values for $a$. Which range is useful? Then, use an arrayfun to apply the function `fixedpoints` to this range. Is `'UniformOutput', false` needed in this case? Which container type does the output have?
 ## 3. Plotting a bifurcation diagram
 The easiest way to plot a bifurcation diagram is in the form of a scatter plot. In this scatter plot, plot points at coordinates $(a, x)$. Do this by looping. Keep in mind the way you index your container types! 
-For clarity's sake, make sure that the points are identically colored and not too large. Furthermore, don't be uncivilized and label your axes.
-## 4. Run the unit tests
+For clarity's sake, make sure that the points are identically colored and not too large. Furthermore, don't be uncivilized and label your axes. Use a figure handle since you will need to add a second plot underneath it, as well as keeping the debugger happy.
+## 4. Plotting the Lyapunov exponent
+For our final exercise, we will work in the file titled `lyapunov.m`. Using the previously written function `fixedpoints`, generate an array (or cell array if you so fancy) that contains the Lyapunov coefficient for varying values of `a`. A similar technique as in section 3. is recommended. Plot this one underneath the bifurcation diagram, at the same scale.
+## 5. Run the unit tests
 Please run the unit tests. Romano didn't spend his Sunday afternoon for you to ignore these :'(.
 
