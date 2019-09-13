@@ -1,73 +1,20 @@
-# Cell arrays
-Most of the optimizations present in MATLAB are based on the assumption that the data provided is in the form of a matrix and is therefore square or rectangular in shape. However, this is sometimes not sufficient. For this purpose, the clever folks at MathWorks introduced what is known as the Cell Array, often confusingly referred to as a `cell`. The `cell` is a **linear**, **random-access** data collection able to contain **arbitrary types**.
-* Linear: Items are stored in order, such that it is sensible to talk about a first, second, third etc element. The cell array has a length.
-* Random-access: You can access any element at any time by indexing. Unlike the way you index an array in MATLAB by using the round brackets `( )`, you use curly braces `{ }` for `cell`s.
-* Arbitrary types: An array can only contain the same data types, such as *only* characters or *only* numbers. A cell array does not have that restriction. It is possible to create a `cell` that has a number as its first element, a character as its second element and even a vector or matrix as its third. Two vectors in a `cell` don't even have to have the same shape or dimensionality.
-In order to declare an empty cell array, you can state
-```matlab
-my_cell = cell(3, 1); % This makes a cell array of shape 3x1
-```
-To add an element, you index via
-```matlab
-my_cell{1} = 1;
-my_cell{2} = 'a';
-my_cell{3} = [2 3 4];
-```
-and to get an element you can say
-```matlab
-my_integer = my_cell{1};
-```
-###  Disclaimer:
-The cell array is often, if not always, significantly slower than natively using vectors. The reason for this is that the MATLAB interpreter has to do many different **checks** on the data. If for example you want to take the sum of all elements in a cell array, the interpreter has to check if the `+` operator is even defined for all the types in the cell. In order to optimize for speed, it is better to use arrays. If we instruct you to use a cell array, be assured that there is no faster way, or, if there is a faster way, we find that this way obfuscates the main idea of the exercise.
+# Programming concepts
 
-# Functional programming and arrayfun
-The way you have learned to program is known as **imperative programming**. This means that your code consists of **data**, as well as different ways to tell the interpreter what to do with your data, namely **functions**. This is however not the only way to write code.
-In your course Electronics and Instrumentation, and perhaps in other moments in your life, you have been exposed to **object-oriented programming**. This is a paradigm, started by Smalltalk in the 1980s, which decides to couple together data and functions into a single **object**. An object could for example represent a person, which has some data (age, name, gender etc), and some functions it could apply on its own data (changeName, ageUp). This paradigm therefore sees data and functions as linked.
-A completely different paradigm, which has been present in academia since the 1950s, startng with LISP, is **functional programming**.  After a period of long obscurity, functional languages such as Scala and Wolfram's Mathematica are starting to become popular, and functional elements are added to languages such as Python, JavaScript and even MATLAB. A central tenet of functional programming is that the distiction between functions and data is fuzzy. This entails that data and functions can be used in a similar way, *i.e.* functions are **first-class citizens**. This has been shown in MATLAB in week 1 in the form of function handles. A function handle behaves similar to normal data, being able to be stored and passed. 
-Functions can therefore be also be passed into other functions. Functions that take other functions as arguments are called **higher-order functions**, and are often useful in coding to express simple concept concisely. An example of a higher-order function that is often used is called a `map` function, in MATLAB called `arrayfun`. This is a function that is shorthand for the following code
+## Functional Programming in MATLAB 2: Mapping Boogaloo
+Functional programming, as introduced a week earlier, is a new way to look at MATLAB scripts that trades off slightly more unreadable and obfuscated code for a major advantage; it namely directly ports to a parallelization on the GPU, which allows you to run code much faster. We previously introduced you to the `arrayfun` function as an example of a higher-order function. Higher-order functions are different from regular functions since they do not just take data (in MATLAB nearly always in the form of an array), but can also take functions as their input. What the `arrayfun` function does is apply the function passed to it on all elements of a passed array, such as in
 ```matlab
-function out = arrayfun(input_function, array)
-    out = array;
-    for i=1:numel(array)
-        out(i) = input_function(array(i))
-    end
-end
+arrayfun(@cos, [0, pi/2, pi, 3*pi/2]);
+>> ans = [1 0 -1 0]
 ```
-What this code does is apply a function `input_function` to all elements in a list, and returns the output. For example, using the `abs` function, we see that
-```matlab
-arrayfun(@abs, [-1 2 -3]) -> [1 2 3]
-```
-The function is passed as a function handle. The function can be a 
-* Built-in, such as `abs` or `cos`
-* Named function, defined in a separate file
-* Anonymous function, such as `f = @(x) x^2 + x-2`
+### Cell array-based mapping and cellfun
+As shown, the `arrayfun` function works on a container. But this container doesn't necessarily have to be an array. An identical higher-order function has been defined for cell arrays, namely `cellfun` (not to be confused with the portable digital communication device in your pocket, that is namely a cellphone).
+The function is near-identical to the previously introduced `arrayfun`. It applies a function that takes a function `f` and a cell array `c`, and returns a vector `v`, of which `v(i) = f(c{i})`. This can be useful if your function takes arbitrary-length input. Another use is a slight workaround, based on the fact that MATLAB has no simple way of applying a function column-wise unless directly built in, like in the `sum` function. To do this, we use the `num2cell` function on a matrix to transform it into a cell array, of which the `i`th element is equal to the `i`th column of the matrix. Subsequently, we use `cellfun` to apply the function to each cell array. 
 
-For the default `arrayfun`, the function has to fulfil a certain criterion. It has to have what's known as **uniform output**. For example, it should always output an integer, or a matrix that's exactly 3x3. This is done because in that case, MATLAB can construct a matrix from it. However, there are some cases where this just does not work. For example, take a function that can return either one or two outputs. In this case, instead of calling
+## Meshgrids
+When exploring a state space, you often wish to vary multiple dimensions. This can be done using two loops. However, knowing MATLAB is not optimized for looping, but instead for vectorized operations, a second method is far easier. This is called a meshgrid. Calling a meshgrid via
 ```matlab
-arrayfun(@my_function, my_container)
+[x, y] = meshgrid(xs, ys);
 ```
-you call
-```matlab
-arrayfun(@my_function, my_container, 'UniformOutput', false)
-```
-and instead of an array, a cell array is returned, where the `i`th element is the function applied to the `i`th element of `my_container`. Here again the usefulness of the array list has been shown.
+results in two matrices containing the x and y coordinates of a grid. The size of the grid, as well as the distance between two adjacent grid points, is passed into this function using the parametes `xs` and `ys` in the standard `begin:step:end` format.
 
-## Training exercise: The quadratic equation and arrayfun
-Let $f(x) = x^2 + 3x + c$. Write a function that takes $c$ as input and returns the real roots (*i.e.* the values where $f(x)=0, x \in \mathbb{R}$) of this equation. Use the quadratic formula. Subsequently, use `arrayfun` to evaluate this function for the range $[-5, 5]$ taking steps of $\frac{1}{4}$. Use MATLAB to find the value for which $f(x)$ has a single real root.
-
-# Main exercise: Bifurcation diagram and Lyapunov exponent
-The main exercise for today involves drawing a bifurcation diagram for the logistic map. We will lead you through this problem in a number of steps.
-## 1. Obtaining a fixed point set
-The first function we will work on is called `orbit_after_transients`. This method will take a single parameter, called `a`, which is the parameter of the logistic map
-$$x_{i+1} = ax(1-x_i), 0 \leq x_i \leq 1.$$
-Use the previously written function `orbit` for a fixed number of iterations, and take a random value as the initial value. Then, to get rid of the transients, remove the first $N$ elements. Then return the transient-free orbit.
-## 2. Obtaining the fixed points for a range of different $a$ values
-We will now work in the function `bifurcationdigram.m`. Subsequently, you generate a range of values for $a$. Which range is useful? Then, use an arrayfun to apply the function `orbit_after_transients` to this range. Is `'UniformOutput', false` needed in this case? Which container type does the output have?
-## 3. Plotting a bifurcation diagram
-The easiest way to plot a bifurcation diagram is in the form of a scatter plot. In this scatter plot, plot points at coordinates $(a, x)$. Do this by looping. Keep in mind the way you index your container types! 
-For clarity's sake, make sure that the points are identically colored and not too large. Furthermore, don't be uncivilized and label your axes. Use a figure handle since you will need to add a second plot underneath it, as well as keeping the debugger happy.
-## 4. Plotting the Lyapunov exponent
-For our final exercise, we will work in the file titled `lyapunov.m`. Using the previously written function `orbit_after_transients`, generate an array (or cell array if you so fancy) that contains the Lyapunov coefficient for varying values of `a`. A similar technique as in section 3. is recommended. Plot this one underneath the bifurcation diagram, at the same scale.
-## 5. Run the unit tests
-Please run the unit tests. Romano didn't spend his Sunday afternoon for you to ignore these :'(.
 
