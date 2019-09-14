@@ -4,7 +4,7 @@ function orbit = nd_orbit(fnct, x0, it)
   % :param fnct: Mapping function mapping x0 to x1 taking a SINGLE parameter (can be multi-dimensional)
   % :param x0: Initial value
   % :param it: Number of iterations
-  % :returns: The entire orbit, including the initial value, containing it elements
+  % :returns: The entire orbit, including the initial value
   orbit = zeros(it, numel(x0));
 
   % Set initial value
