@@ -12,11 +12,19 @@ The function is near-identical to the previously introduced `arrayfun`. It appli
 Another use is a slight workaround, based on the fact that MATLAB has no simple way of applying a function column-wise unless directly built in, like in the `sum` function. To do this, we use the `num2cell` function on a matrix to transform it into a cell array, of which the `i`th element is equal to the `i`th column of the matrix. Subsequently, we use `cellfun` to apply the function to each cell array. 
 
 ## Meshgrids
-When exploring a state space, you often wish to vary multiple dimensions. This can be done using two loops. However, knowing MATLAB is not optimized for looping, but instead for vectorized operations, a second method is far easier. This is called a meshgrid. Calling a meshgrid via
+When exploring a multidimensional state space or a parameter space, you often wish to compute a function over multiple dimensions. This can be done using embedded for loops. However, knowing MATLAB is not optimized for looping, but instead for vectorized operations, a second method is far more efficient. This is relies on using a meshgrid to create a multidimensional grid over the parameter space or the state space. Calling a meshgrid via
 ```matlab
 [x, y] = meshgrid(xs, ys);
 ```
-results in two matrices containing the x and y coordinates of a grid. The size of the grid, as well as the distance between two adjacent grid points, is passed into this function using the parameters `xs` and `ys` in the standard `begin:step:end` format.
+results in two matrices containing the x and y coordinates of a 2D grid. The size of the grid, as well as the distance between two adjacent grid points, is passed into this function using the parameters `xs` and `ys` in the standard `begin:step:end` format. One can then pass the matrices 'x' and 'y' to a function that takes two coordinates as arguments.
+
+To visualize this, try to imagine that you want to compute a function for coordinates in a 2D grid, with the function being computed for all combinations of x and y values between 1 and 5. This results in the following code:
+
+```matlab
+[x y] = meshgrid([1:5], [1:5])
+```
+
+Before you go into the exercise, see if you can interpret the output of this function. Also, read the documentation!
 
 # Exercise: The Henon map and its stability
 This exercise is composed of four functions. Due to an oversight on our part, we did not ask you to write an `orbit` function that works in any dimensions. To correct this, we will implement an `nd_orbit` function. We then extend this function to `nd_orbit_after_transients` like done last time. We then compute the average orbit step for the Henon map starting at a specific initial value. We then apply a meshgrid to obtain the average orbit step for many values of $x_0$. 
