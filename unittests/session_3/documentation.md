@@ -27,11 +27,11 @@ Implement the Henon map as an anonymous function. How do you make an anonymous f
 ## 3. `average_orbit_step.m`
 Obtain the orbit. Subsequently, for an orbit, obtain the average orbit step given by
 $$
-s = \frac{1}{N-1} \sum_{i=1}{N-1} \| x_{i+1} - x_{i} \|,
+s = \frac{1}{N-1} \sum_{i=1}{N-1} \| x_{i+1} - x_{i} \|_2,
 $$
-where $x_i \in \mathbb{R}^2$, and return this value for $s$.
+where $\| \cdotp \|_2$ denotes the base-2 $p$-norm, and $x_i \in \mathbb{R}^2$, and return this value for $s$.
 A clever way to do this is by shifting operations. Don't forget to keep dimensionality in mind, since you are applying a norm function on columns!
 ## 4. `average_orbit_on_grid.m`
 Now, to explore the phase space, we want to get this $s$ value for many different options of $x_0$. To do this, use the meshgrid and apply a function on all elements on the grid; this returns a matrix $S$ where $s_{i,j}$ is the average orbit step for these indices of the meshgrid. Take $a=1.28, b=-0.3$. 
-Subsequently, plot $S$ as a heatmap. If the function `imagesc` does not work, please install the bioinformatics toolbox or talk to a TA. Like always, use figure handles to allow the unittests to work.
+Subsequently, plot $S$ as a heatmap. If the function `imagesc` does not work, please install the bioinformatics toolbox or talk to a TA. Like always, use figure handles to allow the unittests to work. Also return the matrix $S$ in order to let the unittests do their job.
 

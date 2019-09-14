@@ -1,13 +1,23 @@
-function fhandle = average_orbit_step_on_grid(xsteps, ysteps)
+function [fighandle, s] = average_orbit_step_on_grid(xsteps, ysteps, varargin)
   % * Figure 4/4
   % :param xsteps: Values for x contained in the grid
   % :param ysteps: Values for y contained in the grid
-  % :returns: A figure handle for a plot of the stability of the Henon map
+  % :param varargin: Variable argument to handle figure handle
+  % :returns: [The matrix containing grid-applied mean step distances, figure handle]
+
+  if not(isempty(varargin))
+    if ishandle(varargin{1})
+      fighandle = varargin{1};
+    end
+  else
+    fighandle = figure;
+  end
+
   
-  [xs, ys] = meshgrid(-2.5:0.01:2.5, -2.5:0.01:2.5);
-  divs = arrayfun(@(x, y) divergence_ratio([x, y], [1.28 -0.3]), xs, ys);
+  [xs, ys] = meshgrid(xsteps, ysteps);
+  s = arrayfun(@(x, y) average_orbit_step([x, y], [1.28 -0.3]), xs, ys);
   colormap('hot');
-  imagesc(divs);
+  imagesc(s);
   colorbar;
   xlabel('a')
   ylabel('b')
