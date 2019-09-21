@@ -1,7 +1,8 @@
-function [fighandle, s] = mandelbrot(xsteps, ysteps, varargin)
+function [fighandle, s] = mandelbrot(xsteps, ysteps, x0, varargin)
   % * Figure 4/4
   % :param xsteps: Values for x contained in the grid
   % :param ysteps: Values for y contained in the grid
+  % :param x0: Starting position from which the orbit is computed, a complex number
   % :param varargin: Variable argument to handle figure handle
   % :returns: [The matrix containing grid-applied mean step distances, figure handle]
 
@@ -15,7 +16,7 @@ function [fighandle, s] = mandelbrot(xsteps, ysteps, varargin)
 
   
   [xs, ys] = meshgrid(xsteps, ysteps);
-  s = arrayfun(@(x, y) average_orbit_step(0+0i, x + y*i), xs, ys);
+  s = arrayfun(@(x, y) average_orbit_step(x0, x + y*i), xs, ys);
   colormap('hot');
   imagesc(s < 1);
   colorbar;

@@ -1,7 +1,7 @@
-function [fighandle, s] = juliaset(xsteps, ysteps, varargin)
-  % * Figure 4/4
+function [fighandle, s] = juliaset(xsteps, ysteps, c, varargin)
   % :param xsteps: Values for x contained in the grid
   % :param ysteps: Values for y contained in the grid
+  % :param c: Parameter to be used for the quadratic map
   % :param varargin: Variable argument to handle figure handle
   % :returns: [The matrix containing grid-applied mean step distances, figure handle]
 
@@ -15,9 +15,8 @@ function [fighandle, s] = juliaset(xsteps, ysteps, varargin)
 
   
   [xs, ys] = meshgrid(xsteps, ysteps);
-  s = arrayfun(@(x, y) average_orbit_step(x + y*i, -0.4+0.6i), xs, ys);
+  s = arrayfun(@(x, y) average_orbit_step(x + y*i, c), xs, ys);
   colormap('hot');
-  s
   imagesc(s < 1);
   colorbar;
   xlabel('a')
