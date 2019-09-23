@@ -38,7 +38,7 @@ function test_average_orbit_step_converging_point(test_case)
   x0 = [0 0];
   a = [1.28 -0.3];
   mu = average_orbit_step(x0, a);
-  verifyEqual(test_case, abs(mu - 0.138) < 0.01, logical(1));
+  verifyEqual(test_case, abs(mu - 0.2178) < 0.01, logical(1));
 end
 
 function test_average_orbit_step_diverging_point(test_case)
@@ -50,9 +50,13 @@ end
 
 function test_figure(test_case)
   [fig_handle, s_test] = average_orbit_step_on_grid(-1:1:1, -1:1:1);
+  s_test
   set(fig_handle, 'visible', 'off'); % Assure it doesn't hang around after test
-  s_true = [0.1359 0.1400 0.1583; 0.1967 0.1384 0.1377; 0.1389 42 0.1381];
-  is_correct_nan = isnan(s_test(3, 2));
-  s_test(3, 2) = 42;
-  verifyEqual(test_case, all(all(abs(s_true - s_test) < 0.01)), logical(1));
+  s_test
+  s_true = [0 1.0715 0; 0.9261 1.0642 1.0427; 1.0658 0 1.1761];
+  is_correct_number_nans = sum(sum(isnan(s_test))) == 3;
+  s_test(1, 1) = 0;
+  s_test(1, 3) = 0;
+  s_test(3, 2) = 0;
+  verifyEqual(test_case, (all(all(abs(s_true - s_test) < 0.01))) && is_correct_number_nans, logical(1));
 end

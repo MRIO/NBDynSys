@@ -15,12 +15,11 @@ function [fighandle, s] = average_orbit_step_on_grid(xsteps, ysteps, varargin)
 
   
   [xs, ys] = meshgrid(xsteps, ysteps);
-  ys = ys*1i;
-  s = arrayfun(@(x, y) average_orbit_step([x y], [0.3]), xs, ys);
+  s = arrayfun(@(x, y) average_orbit_step([x y], [1.4 0.3]), xs, ys);
   colormap('hot');
-  imagesc(s);
+  imagesc(s < 10);
   colorbar;
   xlabel('a')
   ylabel('b')
-  title('Divergence score on Mandelbrot map')
+  title('Divergence score')
 end
