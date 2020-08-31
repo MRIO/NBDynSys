@@ -19,12 +19,13 @@
 
 **Learning goals:**
 
-- Grasp the basic vocabulary of dynamical systems.
-- Find equilibria in 1D maps.
+- Define and distinguish 'complex systems', 'dynamical systems' and 'adaptive systems'.
+- Grasp the basic vocabulary of dynamical systems (state, phase space, fixed-points...).
+- Find fixed point equilibria in 1D maps.
 - Use a cobweb plot to determine the future states of an 1D iterated system.
 - Learn how to identify dynamical system's equilibria and their stability.
 - Develop intuition about the influence of parameters on the dynamics of the logistic map.
-- Use anonymous functions in matlab to compute orbits (lambda functions).
+- Use anonymous functions (lambda functions) in matlab to compute orbits .
 
 ## Week 2 (Bifurcation of 1D maps)
 
@@ -39,22 +40,23 @@
 - Understand the relationship between periodic attractors and iterated maps.
 - Grasp the concept of topological equivalence.
 - Be able to enumerate the hallmark properties of a chaotic attractor.
-- Be able to state the fixed point theorem.
-- Approximate the Lyapunov exponent.
+- Be able to state the (Banach's) fixed point theorem.
+- Compute the numerical approximation of the Lyapunov exponent.
 
-## Week 3 (2D and ND)
+## Week 3 (2D and ND Maps)
 
 	[AY] Entire chapter 2
 	[AY] 5.4, 5.6
 
 **Learning goals:**
 
-- Compute the evolution of a 2D discrete map.
-- Grasp the concept of a manifold, including stable and unstable manifolds.
+- Compute the evolution of a 2D discrete map (such as the Henon map).
+- Grasp the concept of a 'manifold'.
+- Be able to define stable and unstable manifolds of maps.
 - Calculate the stability of fixed points in 2D maps. 
 - Discover computationally the basins of attraction of different attractors (in the Hénon map).
 - Visualize a period doubling bifurcation in 2D maps.
-- Understand how contraction in phase space may lead to chaotic orbits.
+- Understand how contraction of phase space may lead to chaotic orbits.
 
 ## Week 4 (Fractals)
 
@@ -66,7 +68,7 @@
  - Be able to distinguish countable from uncountable sets.
  - Enumerate and describe the mathematical properties of a Cantor Set.
  - Describe how the coast of England is like a fractal.
- - Estimate and compute the Mandelbrot set and the Julia set.
+ - Create computational estimates of the Mandelbrot and the Julia set.
  - Be able to describe the relatioship between the Mandelbrot and the Julia set.
  - Relate the main axis of the Mandelbrot set with a bifurcation diagram
 
@@ -77,10 +79,9 @@
 
 **Learning goals:**
 
-- Develop intuition about the directions of flows.
+- Develop intuition about the directions of flows in 1D continuous systems.
 -  Describe the conditions for appearance of the following bifurcations: saddle node, pitchfork, transcritical.
 - Understand the conditions for existence and uniqueness of solutions for 1D systems.
-
 
 ## Week 6 (2D Flows, Limit cycles, 1D Oscillators)
 
@@ -96,7 +97,9 @@
 - Learn how to categorize flows close to equilibria as a consequene of jacobian normal forms. Be able to determine which flows are equivalent.
 - Explain the emergence of hysteresis in systems with coexisting equilibria.
 - Discover the directions of a 2D flow using nulclines.
+- Describe a Hopf bifurcation.
 - Understand the emergence of local bifurcations as a function of the transition between different categories of flows.
+- Differentiate between local and global bifurcations.
 
 ## Week 7 Synchrony and Coupled oscillators
 
@@ -104,10 +107,11 @@
 	[WIN] 1A, 2A, 2B, 4A, 4B, 8A, 8B, 9A
 
 **Learning goals:**
+
 - Describe the conditons for emergence of a Hopf bifurcation in a 2D system.
 - Understand when complex processes can be modeled by simple 1D systems.
 - Describe the process of emergence of oscillations.
 - Distinguish different kinds of oscillatory processes such as fireflies and clocks.
 - Name the crucial parameters underlying synchrony in a set of coupled oscillators.
-- Gain insight into propagation of stimulus in excitable media.
+- Gain insight into how stimulus propagates in excitable media.
 - Be able to identify a phase singularity.
