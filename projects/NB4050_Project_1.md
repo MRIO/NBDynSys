@@ -270,16 +270,17 @@ We will now consider what happens to the dynamics of a system for **smooth chang
 
 #### 4. Parameter Space Experiments for the Logistic Map:
 
-Display E in the cobweb plot for a small selection of random initial conditions for the logist map for varying (for example, take a to be one of these [0-4]).
+Display orbits in the cobweb plot for a small selection of random initial conditions for the logistic map for varying the parameter $a$ (for example, taking the parameter $a$ in the interval [0-4]).
 
 ##### Questions:
-- What is common to all these orbits?
-- Will the orbits always coverge to an equilibrium? 
-- How many equilibria are there in the map?
-- can we find conditions to determine the point where the **qualitiative behavior** of the orbits change?
+
+- Is there anything common to all these orbits?
+- Will the orbits always coverge to an equilibrium for any $a$? 
+- How many equilibria are there in the map? Does this change as a function of $a$?
+- Can we find mathematical conditions to determine the point where the **qualitiative behavior** of the orbits change?
 - Derive Formula: In the logistic map, what is the formula that returns the position of the equilibria as a function of the parameter $a$? Can you find the equilibria for 'any functions'?
 - Can you see in the cobweb plot what makes an equilibrium stable or unstable? 
-- In the logistic map, at what value of a we see a change of behavior, from a fixed-point attractor to a periodic attractor? 
+- In the logistic map, at what value of a we see a change of behavior, from a fixed-point attractor to a periodic attractor?
 
 ## Stability of Equilibria
 
