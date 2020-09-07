@@ -12,7 +12,6 @@
 
 [Win] - Winfree, **Geometry of Biologica Time**
 
-
 ## Week 1 (1D maps)
 
 	[AY]  1.1, 1.2, 1.3, 1,4
@@ -42,6 +41,7 @@
 - Be able to enumerate the hallmark properties of a chaotic attractor.
 - Be able to state the (Banach's) fixed point theorem.
 - Compute the numerical approximation of the Lyapunov exponent.
+- Describe period doubling cascade and the Feigenbaum constant.
 
 ## Week 3 (2D and ND Maps)
 
