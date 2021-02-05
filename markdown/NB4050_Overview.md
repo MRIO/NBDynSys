@@ -13,9 +13,7 @@
 [Win] - Winfree, **Geometry of Biologica Time**
 
 ## Week 1: 1D Maps
-### Sources
-	[AY]  1.1, 1.2, 1.3, 1,4
-###Concepts
+### Concepts
 
 Systems (dynamical, complex, adaptive), dynamical system's terminology (state, phase space, orbits, attractors, parameters), iterated functions and 1D maps, logistic map, cobweb plot.
 
@@ -26,7 +24,7 @@ Systems (dynamical, complex, adaptive), dynamical system's terminology (state, p
 
 ### Learning Goals (be able to...)
 
-- Apply basic terminology of dynamical systems.
+- Apply basic terminology of dynamical systems (see concepts above)
 - Find equilibria in 1D maps.
 - Compute orbits for arbitrary 1D dynamical systems.
 - Use a cobweb plot to determine the future states of an 1D iterated system.
@@ -35,12 +33,12 @@ Systems (dynamical, complex, adaptive), dynamical system's terminology (state, p
 - [Programming] Pass anonymous functions (lambda functions).as arguments
 - Use anonymous functions in matlab to compute orbits 
 
-## Week 2: 1D Maps (Part II)
 ### Sources
-	[AY] 1.5, 1.6, 1.7, 1.8
-	[AY] 3.1, 3.2, 3.3. 3.5
-	[AY] 4.4
-	[AY] 11.1, 11.4
+	[AY]  1.1, 1.2, 1.3, 1,4
+
+
+
+## Week 2: 1D Maps (Part II)
 
 ### Concepts
 
@@ -64,6 +62,14 @@ Fixed point theorem, stability of fixed points, periodic attractors, stability o
 - Enumerate the hallmark properties of a chaotic attractor.
 - Calculate an approximation to the Lyapunov exponent.
 - Grasp the concept of topological equivalence.
+
+### Sources
+	[AY] 1.5, 1.6, 1.7, 1.8
+	[AY] 3.1, 3.2, 3.3. 3.5
+	[AY] 4.4
+	[AY] 11.1, 11.4
+
+
 
 ## Week 3: 2D maps and ND maps
 

@@ -24,7 +24,7 @@
 - Use a cobweb plot to determine the future states of an 1D iterated system.
 - Learn how to identify dynamical system's equilibria and their stability.
 - Develop intuition about the influence of parameters on the dynamics of the logistic map.
-- Use anonymous functions (lambda functions) in matlab to compute orbits .
+- Use anonymous functions (lambda functions) in matlab to compute orbits.
 
 ## Week 2 (Bifurcation of 1D maps)
 
@@ -74,12 +74,14 @@
 
 ## Week 5 (1D Flows and Bifurcations)
 
+	[ST] Chapter 2 and 3 (3.1,3.2,3.3)
 	[HK] Chapter 1 and 2
-	[ST] Chapter 2 and 3
 
 **Learning goals:**
 
 - Develop intuition about the directions of flows in 1D continuous systems.
+- Know the conditions for stability of fixed points.
+- Differentiate hyperbolic from non-hyperbolic fixed points
 -  Describe the conditions for appearance of the following bifurcations: saddle node, pitchfork, transcritical.
 - Understand the conditions for existence and uniqueness of solutions for 1D systems.
 

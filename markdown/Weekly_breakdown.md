@@ -7,10 +7,13 @@ Dynamical System's Vocabulary (state, phase space, orbits, attractors, parameter
 
 #### Programming concepts
 
-- anonymous functions in matlab
-- data collection: cells or arrays?
+- functional programming python
 
 #### Exercises
+
+- Cobweb (1h)
+- Bifurcation (1h)
+- Homework: Lyapuynov
 
 ####  Code
 
@@ -104,3 +107,4 @@ Laplacian operator, conditions for waves and oscillations, stochastic propagatio
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbLTk3NDY4ODQ5OF19
 -->
+
